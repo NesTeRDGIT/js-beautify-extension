@@ -8,7 +8,7 @@ import { OptionsVsCodePersistent } from '../options/OptionsVsPersistent';
 import { OptionsFilePersistent } from '../options/OptionsFilePersistent';
 
 export class Extention implements Disposable {
-    
+    private readonly configFileName = '.jsbeautifyrc.json';
     private formatters = new Formatters();
     private optionsPersistent?: IOptionsPersistent;
     private vsCodeDispose: vscode.Disposable[] = [];
@@ -19,11 +19,10 @@ export class Extention implements Disposable {
         const pathConfigFile = this.getConfigFilePath();
         this.optionsPersistent = pathConfigFile == null ? new OptionsVsCodePersistent() : new OptionsFilePersistent(pathConfigFile);
         this.register();
-
+        
         let sub = context.subscriptions;
         sub.push(vscode.commands.registerCommand('js-beautify-ext.beautify', () => this.beautifyHandler(true)));
         sub.push(vscode.commands.registerCommand('js-beautify-ext.beautifyFile', () => this.beautifyHandler(false)));
-        
         sub.push(vscode.workspace.onDidSaveTextDocument((document) => this.saveTextDocumentHandler(document)));
         sub.push(vscode.workspace.onDidChangeConfiguration(() => this.changeConfigurationHandler()));
     }
@@ -75,11 +74,13 @@ export class Extention implements Disposable {
         })
     };
 
+    
+
     /** Получить путь к файлу конфигурации */
     private getConfigFilePath(): string | null {
         const root = this.getWorkspaceRoot();
         if (root != null) {
-            const fullPath = path.join(root, '.jsbeautifyrc');
+            const fullPath = path.join(root, this.configFileName);
             return fs.existsSync(fullPath) ? fullPath : null
         }
         return null;

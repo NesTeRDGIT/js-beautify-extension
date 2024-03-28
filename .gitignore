@@ -4,3 +4,4 @@ node_modules
 !**/test/.vscode
 typings
 package-lock.json
+/dist
