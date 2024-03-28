@@ -1,0 +1,10 @@
+{
+  "html.templating.desc": "This setting allows you to control how templating languages are handled in HTML files. Setting it to false is equivalent to enabling the [\"none\"] option. Setting it to true is equivalent to enabling the [\"auto\"] option. For more details on the [\"auto\"] option, please refer to its description.",
+	"html.templating.auto": "Enable django, erb, handlebars, php and smarty templating language. (angular not enable by default)",
+	"html.templating.none": "Disable templating language.",
+	"html.templating.angular": "Enable angular templating language.",
+	"html.templating.django": "Enable django templating language.",
+	"html.templating.erb": "Enable erb templating language.",
+	"html.templating.php": "Enable php templating language.",
+	"html.templating.smarty": "Enable smarty templating language."
+}

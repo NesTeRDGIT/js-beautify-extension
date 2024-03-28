@@ -1,0 +1,102 @@
+import { IOptionsPersistent } from "./IOptionsPersistent";
+import { JSBeautifyOptions, HTMLBeautifyOptions, CSSBeautifyOptions, CoreBeautifyOptions } from 'js-beautify';
+import * as vscode from 'vscode';
+import { FormatType } from "../formatters/FormatType";
+import { Options } from "./Options";
+
+/** Хранилище параметров в VsCode */
+export class OptionsVsCodePersistent implements IOptionsPersistent {
+    private optionsMap?: Map<FormatType, Options>;
+
+    constructor() {
+    }
+
+    reset(): void {
+        this.optionsMap = undefined;
+    }
+
+    getOptionAsync = (key: FormatType): Promise<Options> => {
+        return new Promise<Options>((resolve) => {
+            if (this.optionsMap) {
+                resolve(this.optionsMap.has(key) ? this.optionsMap.get(key)! : {});
+            } else {
+                this.loadAsync().then(() => {
+                    this.getOptionAsync(key).then(v => resolve(v));
+                });
+            }
+        });
+    }
+
+    /** Загрузить параметры */
+    private loadAsync = (): Promise<void> => {
+        return new Promise((resolve) => {
+            const vsCodeConfig = vscode.workspace.getConfiguration();
+            const extentionConfig = vscode.workspace.getConfiguration('js-beautify-for-vscode');
+            const formattingOptions: vscode.FormattingOptions = vsCodeConfig.editor;
+
+            const options: CoreBeautifyOptions = {
+                indent_with_tabs: formattingOptions.insertSpaces === undefined ? true : !formattingOptions.insertSpaces,
+                indent_size: formattingOptions.tabSize,
+                indent_char: formattingOptions.insertSpaces ? ' ': '\t',
+                end_with_newline: vsCodeConfig.files.insertFinalNewLine,
+                eol: vsCodeConfig.files.eol
+            };
+
+            this.optionsMap = new Map();
+            this.creteaHtmlOptions(vsCodeConfig, extentionConfig, {...options});
+            this.creteaJsOptions(vsCodeConfig, extentionConfig, {...options});
+            this.creteaCssOptions(vsCodeConfig, extentionConfig, {...options});
+            resolve();
+        });
+    }
+
+    /** Создать параметры для html */
+    private creteaHtmlOptions = (vsCodeConfig: vscode.WorkspaceConfiguration, extentionConfig: vscode.WorkspaceConfiguration, optionBase: JSBeautifyOptions) => {
+        const options: HTMLBeautifyOptions = optionBase;
+
+        const templating = extentionConfig.get('html.templating');
+        if (Array.isArray(templating) && templating.every(x => typeof x == 'string')) {
+            options.templating = templating;
+        }
+        const extraLiners = vsCodeConfig.html.format.extraLiners;
+        if (typeof extraLiners === 'string') {
+            options.extra_liners = extraLiners.split(',').map(s => s.trim());
+        }
+        options.indent_handlebars = vsCodeConfig.html.format.indentHandlebars;
+        options.indent_inner_html = vsCodeConfig.html.format.indentInnerHtml;
+        options.max_preserve_newlines = vsCodeConfig.html.format.maxPreserveNewLines;
+        options.preserve_newlines = vsCodeConfig.html.format.preserveNewLines;
+        options.wrap_attributes = vsCodeConfig.html.format.wrapAttributes;
+
+        const unformatted = vsCodeConfig.html.format.unformatted;
+        if (typeof unformatted === 'string') {
+            options.unformatted = unformatted.split(',').map(s => s.trim());
+        }
+        options.wrap_line_length = vsCodeConfig.html.format.wrapLineLength;
+
+        this.optionsMap!.set(FormatType.html, options);
+    }
+
+    /** Cоздать параметры для js */
+    private creteaJsOptions = (vsCodeConfig: vscode.WorkspaceConfiguration, extentionConfig: vscode.WorkspaceConfiguration, optionBase: JSBeautifyOptions) => {
+        const options: JSBeautifyOptions = optionBase;
+
+        const templating = extentionConfig.get('js.templating');
+        if (Array.isArray(templating) && templating.every(x => typeof x == 'string')) {
+            options.templating = templating;
+        }
+        options.space_after_anon_function = vsCodeConfig.javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions;
+        options.space_in_paren = vsCodeConfig.javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis;
+        this.optionsMap!.set(FormatType.js, options);
+    }
+
+    /** Создать параметры для css */
+    private creteaCssOptions = (vsCodeConfig: vscode.WorkspaceConfiguration, extentionConfig: vscode.WorkspaceConfiguration, optionBase: JSBeautifyOptions) => {
+        const options: CSSBeautifyOptions = optionBase;
+        const templating = extentionConfig.get('css.templating');
+        if (Array.isArray(templating) && templating.every(x => typeof x == 'string')) {
+            options.templating = templating;
+        }
+        this.optionsMap!.set(FormatType.css, options);
+    }
+}

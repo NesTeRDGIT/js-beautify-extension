@@ -1,0 +1,156 @@
+{
+  "name": "js-beautify-extentions",
+  "displayName": "js-beautify for VSCode",
+  "description": "js-beautify for VSCode",
+  "version": "1.0.0",
+  "publisher": "nesterenok",
+  "engines": {
+    "vscode": "^1.22.0"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages",
+    "Formatters"
+  ],
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#e8e030",
+    "theme": "light"
+  },
+  "license": "MIT",
+  "main": "./dist/extension",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "js-beautify-ext.beautify",
+        "title": "Beautify selection"
+      },
+      {
+        "command": "js-beautify-ext.beautifyFile",
+        "title": "Beautify file"
+      }
+    ],
+    "configuration": {
+      "title": "js-beautify for VSCode",
+      "properties": {
+        "js-beautify-for-vscode.html.templating": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "none",
+              "angular",
+              "django",
+              "erb",
+              "php",
+              "smarty"
+            ],
+            "enumDescriptions": [
+              "%html.templating.auto%",
+              "%html.templating.none%",
+              "%html.templating.angular%",
+              "%html.templating.django%",
+              "%html.templating.erb%",
+              "%html.templating.php%",
+              "%html.templating.smarty%"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "default": [
+            "auto"
+          ],
+          "description": "%html.templating.desc%"
+        },
+        "js-beautify-for-vscode.js.templating": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "none",
+              "angular",
+              "django",
+              "erb",
+              "php",
+              "smarty"
+            ],
+            "enumDescriptions": [
+              "%html.templating.auto%",
+              "%html.templating.none%",
+              "%html.templating.angular%",
+              "%html.templating.django%",
+              "%html.templating.erb%",
+              "%html.templating.php%",
+              "%html.templating.smarty%"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "default": [
+            "auto"
+          ],
+          "description": "%html.templating.desc%"
+        },
+        "js-beautify-for-vscode.css.templating": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "none",
+              "angular",
+              "django",
+              "erb",
+              "php",
+              "smarty"
+            ],
+            "enumDescriptions": [
+              "%html.templating.auto%",
+              "%html.templating.none%",
+              "%html.templating.angular%",
+              "%html.templating.django%",
+              "%html.templating.erb%",
+              "%html.templating.php%",
+              "%html.templating.smarty%"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "default": [
+            "auto"
+          ],
+          "description": "%html.templating.desc%"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@types/js-beautify": "^1.14.3",
+    "js-beautify": "^1.15.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "esbuild": "^0.20.2",
+    "typescript": "^5.4.3",
+    "vscode": "^1.1.37"
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NesTeRDGIT/js-beautify-extentions"
+  },
+  "bugs": {
+    "url": "https://github.com/NesTeRDGIT/js-beautify-extentions/issues"
+  }
+}
