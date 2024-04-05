@@ -1,6 +1,6 @@
 # Changelog
 
-### 1.0.2 (2024-04-05)
+### 1.0.3 (2024-04-05)
 **Update:**
 - Track creation/deletion/change of .jsbeautifyrc.json
 - Updated Readme file
