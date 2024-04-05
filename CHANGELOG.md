@@ -1,4 +1,6 @@
 # Changelog
+### 1.0.4 (2024-04-05)
+- Change README table format for marketplace visualstudio
 
 ### 1.0.3 (2024-04-05)
 **Update:**
