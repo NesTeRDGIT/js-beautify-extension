@@ -50,7 +50,7 @@ Matching VSCode settings to js-beautify settings<br />
 |space_after_anon_function|javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions
 |space_in_paren|format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis
 
-## File Settings .jsbeautifyrc.json
+## File Settings (.jsbeautifyrc.json)
     {
         html: HTMLBeautifyOptions,
         css: CSSBeautifyOptions,
@@ -58,10 +58,10 @@ Matching VSCode settings to js-beautify settings<br />
     }
 HTMLBeautifyOptions/CSSBeautifyOptions/JSBeautifyOptions are [js-beautify](https://github.com/beautifier/js-beautify) settings
 
-## Support for Angular control flow formatting:
+## Support for Angular control flow formatting
 set parameters: <br />
-js-beautify-for-vscode:html.templating = ['angular']<br />
-html.format.indentHandlebars = true<br />
+- js-beautify-for-vscode:html.templating = ['angular']<br />
+- html.format.indentHandlebars = true<br />
 <p align="center">
     <img src="https://github.com/NesTeRDGIT/js-beautify-extentions/blob/main/raw/DemoActivateAngular.gif?raw=true" alt="DemoActivateAngular"/>
 </p>
