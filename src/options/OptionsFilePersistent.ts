@@ -28,10 +28,11 @@ export class OptionsFilePersistent implements IOptionsPersistent {
     getOptionAsync = (type: FormatType): Promise<Options> => {
         return new Promise<Options>((resolve) => {
             if (this.optionsMap) {
-                resolve(this.optionsMap.has(type) ? this.optionsMap.get(type)! : {});
+                const option = this.optionsMap.get(type);
+                resolve(option ? Object.assign({}, option) : {});
             } else {
                 this.loadAsync().then(() => {
-                    this.getOptionAsync(type).then(v => resolve(v));
+                    this.getOptionAsync(type).then(v => resolve(Object.create(v)));
                 });
             }
         });
@@ -40,12 +41,14 @@ export class OptionsFilePersistent implements IOptionsPersistent {
     /** Загрузить параметры */
     private loadAsync = (): Promise<void> => {
         return new Promise((resolve) => {
-            fs.readFile(this._filename, 'utf8', (e, data) => {
-                const optionFromFile: JsBeautifyOptionFile = JSON.parse(data);
+            return fs.readFile(this._filename, 'utf8', (e, data) => {
                 this.optionsMap = new Map();
-                this.optionsMap.set(FormatType.js, optionFromFile.js);
-                this.optionsMap.set(FormatType.css, optionFromFile.css);
-                this.optionsMap.set(FormatType.html, optionFromFile.html);
+                if(data != ''){
+                    const optionFromFile: JsBeautifyOptionFile = JSON.parse(data);
+                    this.optionsMap.set(FormatType.js, optionFromFile.js);
+                    this.optionsMap.set(FormatType.css, optionFromFile.css);
+                    this.optionsMap.set(FormatType.html, optionFromFile.html);
+                }
                 resolve();
             })
         })

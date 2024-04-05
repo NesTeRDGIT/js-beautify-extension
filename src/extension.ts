@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { Extention } from './vscode/Extention';
+import { Extention } from './extention/Extention';
 
 const extention = new Extention();
 

@@ -15,13 +15,14 @@ export class OptionsVsCodePersistent implements IOptionsPersistent {
         this.optionsMap = undefined;
     }
 
-    getOptionAsync = (key: FormatType): Promise<Options> => {
+    getOptionAsync = (type: FormatType): Promise<Options> => {
         return new Promise<Options>((resolve) => {
             if (this.optionsMap) {
-                resolve(this.optionsMap.has(key) ? this.optionsMap.get(key)! : {});
+                const option = this.optionsMap.get(type);
+                resolve( option ? Object.assign({}, option) : {});
             } else {
                 this.loadAsync().then(() => {
-                    this.getOptionAsync(key).then(v => resolve(v));
+                    this.getOptionAsync(type).then(v => resolve(v));
                 });
             }
         });
@@ -32,12 +33,8 @@ export class OptionsVsCodePersistent implements IOptionsPersistent {
         return new Promise((resolve) => {
             const vsCodeConfig = vscode.workspace.getConfiguration();
             const extentionConfig = vscode.workspace.getConfiguration('js-beautify-for-vscode');
-            const formattingOptions: vscode.FormattingOptions = vsCodeConfig.editor;
-
+            
             const options: CoreBeautifyOptions = {
-                indent_with_tabs: formattingOptions.insertSpaces === undefined ? true : !formattingOptions.insertSpaces,
-                indent_size: formattingOptions.tabSize,
-                indent_char: formattingOptions.insertSpaces ? ' ': '\t',
                 end_with_newline: vsCodeConfig.files.insertFinalNewLine,
                 eol: vsCodeConfig.files.eol
             };
