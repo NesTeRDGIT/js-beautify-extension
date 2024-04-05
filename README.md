@@ -1,6 +1,7 @@
-VsCode by default uses [js-beautify](https://github.com/beautifier/js-beautify) to format the code, but not all js-beautify settings can be edited in VSCode
+VSCode by default uses [js-beautify](https://github.com/beautifier/js-beautify) to format the code, but not all js-beautify settings can be edited in VSCode
 
 This extension uses either the VSCode settings for the js-beautify configuration or the .jsbeautifyrc.json file. If the .jsbeautifyrc.json file is present in the project root, then the settings from .jsbeautifyrc will be used, if not, then the VSCode settings will be used
+<br/>
 <br/>
 [Marketplace Visual Studio](https://marketplace.visualstudio.com/items?itemName=nesterenok.js-beautify-extentions)
 
@@ -49,7 +50,7 @@ Matching VSCode settings to js-beautify settings<br />
 |space_after_anon_function|javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions
 |space_in_paren|format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis
 
-## .jsbeautifyrc.json
+## File Settings .jsbeautifyrc.json
     {
         html: HTMLBeautifyOptions,
         css: CSSBeautifyOptions,
@@ -57,8 +58,8 @@ Matching VSCode settings to js-beautify settings<br />
     }
 HTMLBeautifyOptions/CSSBeautifyOptions/JSBeautifyOptions are [js-beautify](https://github.com/beautifier/js-beautify) settings
 
-**Support for Angular control flow formatting:**
-*set parameters:* <br />
+## Support for Angular control flow formatting:
+set parameters: <br />
 js-beautify-for-vscode:html.templating = ['angular']<br />
 html.format.indentHandlebars = true<br />
 <p align="center">
