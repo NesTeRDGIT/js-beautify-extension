@@ -1,20 +1,24 @@
 {
-  "name": "js-beautify-extentions",
+  "name": "js-beautify-extension",
   "displayName": "js-beautify for VSCode",
   "description": "js-beautify for VSCode",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "nesterenok",
   "engines": {
     "vscode": "^1.22.0"
   },
   "categories": [
-    "Other",
     "Programming Languages",
-    "Formatters"
+    "Formatters",
+    "Other"
+  ],
+  "keywords":[
+    "TypeScript",
+    "Angular",
+    "Angular control flow"
   ],
   "icon": "icon.png",
   "galleryBanner": {
-    "color": "#e8e030",
     "theme": "light"
   },
   "license": "MIT",
