@@ -128,7 +128,8 @@ Matching VSCode settings to js-beautify settings<br />
         css: CSSBeautifyOptions,
         js: JSBeautifyOptions
     }
-HTMLBeautifyOptions/CSSBeautifyOptions/JSBeautifyOptions are [js-beautify](https://github.com/beautifier/js-beautify) settings
+HTMLBeautifyOptions/CSSBeautifyOptions/JSBeautifyOptions are [js-beautify](https://github.com/beautifier/js-beautify) settings<br />
+JSON Schema: [beautifyrc.json](https://github.com/NesTeRDGIT/js-beautify-extentions/blob/main/schema/beautifyrc.json)
 
 ## Support for Angular control flow formatting
 Set parameters: <br />

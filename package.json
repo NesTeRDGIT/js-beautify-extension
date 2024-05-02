@@ -2,7 +2,7 @@
   "name": "js-beautify-extension",
   "displayName": "js-beautify for VSCode",
   "description": "js-beautify for VSCode",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "nesterenok",
   "engines": {
     "vscode": "^1.22.0"
@@ -140,7 +140,7 @@
     ]
   },
   "dependencies": {
-    "@types/js-beautify": "^1.14.3",
+    "@types/js-beautify": "^1.14.3",   
     "js-beautify": "^1.15.1"
   },
   "devDependencies": {
