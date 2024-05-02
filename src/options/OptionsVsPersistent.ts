@@ -32,7 +32,7 @@ export class OptionsVsCodePersistent implements IOptionsPersistent {
     private loadAsync = (): Promise<void> => {
         return new Promise((resolve) => {
             const vsCodeConfig = vscode.workspace.getConfiguration();
-            const extentionConfig = vscode.workspace.getConfiguration('js-beautify-for-vscode');
+            const extensionConfig = vscode.workspace.getConfiguration('js-beautify-for-vscode');
             
             const options: CoreBeautifyOptions = {
                 end_with_newline: vsCodeConfig.files.insertFinalNewLine,
@@ -40,15 +40,15 @@ export class OptionsVsCodePersistent implements IOptionsPersistent {
             };
 
             this.optionsMap = new Map();
-            this.creteaHtmlOptions(vsCodeConfig, extentionConfig, {...options});
-            this.creteaJsOptions(vsCodeConfig, extentionConfig, {...options});
-            this.creteaCssOptions(vsCodeConfig, extentionConfig, {...options});
+            this.createHtmlOptions(vsCodeConfig, extensionConfig, {...options});
+            this.createJsOptions(vsCodeConfig, extensionConfig, {...options});
+            this.createCssOptions(vsCodeConfig, extensionConfig, {...options});
             resolve();
         });
     }
 
     /** Создать параметры для html */
-    private creteaHtmlOptions = (vsCodeConfig: vscode.WorkspaceConfiguration, extentionConfig: vscode.WorkspaceConfiguration, optionBase: JSBeautifyOptions) => {
+    private createHtmlOptions = (vsCodeConfig: vscode.WorkspaceConfiguration, extentionConfig: vscode.WorkspaceConfiguration, optionBase: JSBeautifyOptions) => {
         const options: HTMLBeautifyOptions = optionBase;
 
         const templating = extentionConfig.get('html.templating');
@@ -74,11 +74,11 @@ export class OptionsVsCodePersistent implements IOptionsPersistent {
         this.optionsMap!.set(FormatType.html, options);
     }
 
-    /** Cоздать параметры для js */
-    private creteaJsOptions = (vsCodeConfig: vscode.WorkspaceConfiguration, extentionConfig: vscode.WorkspaceConfiguration, optionBase: JSBeautifyOptions) => {
+    /** Создать параметры для js */
+    private createJsOptions = (vsCodeConfig: vscode.WorkspaceConfiguration, extensionConfig: vscode.WorkspaceConfiguration, optionBase: JSBeautifyOptions) => {
         const options: JSBeautifyOptions = optionBase;
 
-        const templating = extentionConfig.get('js.templating');
+        const templating = extensionConfig.get('js.templating');
         if (Array.isArray(templating) && templating.every(x => typeof x == 'string')) {
             options.templating = templating;
         }
@@ -88,9 +88,9 @@ export class OptionsVsCodePersistent implements IOptionsPersistent {
     }
 
     /** Создать параметры для css */
-    private creteaCssOptions = (vsCodeConfig: vscode.WorkspaceConfiguration, extentionConfig: vscode.WorkspaceConfiguration, optionBase: JSBeautifyOptions) => {
+    private createCssOptions = (vsCodeConfig: vscode.WorkspaceConfiguration, extensionConfig: vscode.WorkspaceConfiguration, optionBase: JSBeautifyOptions) => {
         const options: CSSBeautifyOptions = optionBase;
-        const templating = extentionConfig.get('css.templating');
+        const templating = extensionConfig.get('css.templating');
         if (Array.isArray(templating) && templating.every(x => typeof x == 'string')) {
             options.templating = templating;
         }

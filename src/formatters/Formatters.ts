@@ -34,8 +34,8 @@ export class Formatters {
   /** Получить форматер */
   getFormatter(format: FormatType): Formatter | null;
   getFormatter(doc: vscode.TextDocument): Formatter | null;
-  getFormatter(formatOrdoc: vscode.TextDocument | FormatType): Formatter | null {
-    const format = this.isFormatEnum(formatOrdoc) ? formatOrdoc : this.getType(formatOrdoc);
+  getFormatter(formatOrDoc: vscode.TextDocument | FormatType): Formatter | null {
+    const format = this.isFormatEnum(formatOrDoc) ? formatOrDoc : this.getType(formatOrDoc);
     if (format !== null) {
       return this._formats.get(format) ?? null;
     }

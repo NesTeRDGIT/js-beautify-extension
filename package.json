@@ -12,7 +12,7 @@
     "Formatters",
     "Other"
   ],
-  "keywords":[
+  "keywords": [
     "TypeScript",
     "Angular",
     "Angular control flow"
@@ -22,6 +22,14 @@
     "theme": "light"
   },
   "license": "MIT",
+  "json.schemas": [
+    {
+      "fileMatch": [
+        ".jsbeautifyrc.json"
+      ],
+      "url": "https://github.com/NesTeRDGIT/js-beautify-extentions/blob/main/schema/beautifyrc.json"
+    }
+  ],
   "main": "./dist/extension",
   "activationEvents": [
     "onStartupFinished"
@@ -138,10 +146,10 @@
     "js-beautify": "^1.15.1"
   },
   "devDependencies": {
-    "@types/node": "^20.11.30",
-    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@types/node": "^20.12.8",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
     "esbuild": "^0.20.2",
-    "typescript": "^5.4.3",
+    "typescript": "^5.4.5",
     "vscode": "^1.1.37"
   },
   "scripts": {

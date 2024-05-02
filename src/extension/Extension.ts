@@ -8,7 +8,7 @@ import { OptionsVsCodePersistent } from '../options/OptionsVsPersistent';
 import { OptionsFilePersistent } from '../options/OptionsFilePersistent';
 import { Options } from 'src/options/Options';
 
-export class Extention implements Disposable {
+export class Extension implements Disposable {
     private readonly configFileName = '.jsbeautifyrc.json';
     private formatters = new Formatters();
     private optionsPersistent?: IOptionsPersistent;
@@ -138,10 +138,10 @@ export class Extention implements Disposable {
       
         return new Promise<vscode.TextEdit[]>((resolve) => {           
             if (this.optionsPersistent) {              
-                const formater = this.formatters.getFormatter(document);
-                if(formater){
-                    const doc = new Document(document, formater);                   
-                    return this.optionsPersistent.getOptionAsync(formater.type).then((option)=>{                       
+                const formatter = this.formatters.getFormatter(document);
+                if(formatter){
+                    const doc = new Document(document, formatter);                   
+                    return this.optionsPersistent.getOptionAsync(formatter.type).then((option)=>{                       
                         option = this.mergeOptions(option, vsOptions);
                         return doc.formatSelection([range], option).then(result => {
                             const replaces = result.map(x => vscode.TextEdit.replace(x.range, x.text));
@@ -157,10 +157,10 @@ export class Extention implements Disposable {
     private provideDocumentFormattingEdits(document: vscode.TextDocument, vsOptions: vscode.FormattingOptions): vscode.ProviderResult<vscode.TextEdit[]> {
         return new Promise<vscode.TextEdit[]>((resolve) => {
             if (this.optionsPersistent) {
-                const formater = this.formatters.getFormatter(document);
-                if(formater){
-                    const doc = new Document(document, formater);
-                    return this.optionsPersistent.getOptionAsync(formater.type).then((option)=>{
+                const formatter = this.formatters.getFormatter(document);
+                if(formatter){
+                    const doc = new Document(document, formatter);
+                    return this.optionsPersistent.getOptionAsync(formatter.type).then((option)=>{
                         option = this.mergeOptions(option, vsOptions);
                         return doc.formatFullAsync(option).then(result => {
                             resolve(result ? [new vscode.TextEdit(result.range, result.text)] : [])

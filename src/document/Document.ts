@@ -1,8 +1,6 @@
 import { Options } from './../options/Options';
 import * as vscode from 'vscode';
-import { Formatters } from '../formatters/Formatters';
 import { RangeValue } from './RangeValue';
-import { IOptionsPersistent } from 'src/options/IOptionsPersistent';
 import { Formatter } from 'src/formatters/Formatter';
 
 /** Документ */
@@ -13,7 +11,7 @@ export class Document {
         this.formatter = formatter;
     }
 
-    /** Получить диапозон всего текста  */
+    /** Получить диапазон всего текста  */
     getFullRange = () => this.doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE));
 
     /** Форматировать весь документ */

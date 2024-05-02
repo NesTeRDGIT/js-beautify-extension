@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
-import { Extention } from './extention/Extention';
+import { Extension } from './extension/Extension';
 
-const extention = new Extention();
+const extension = new Extension();
 
 export function activate(context: vscode.ExtensionContext) {
-  extention.activate(context);
+  extension.activate(context);
 };
