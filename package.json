@@ -22,14 +22,6 @@
     "theme": "light"
   },
   "license": "MIT",
-  "json.schemas": [
-    {
-      "fileMatch": [
-        ".jsbeautifyrc.json"
-      ],
-      "url": "https://github.com/NesTeRDGIT/js-beautify-extentions/blob/main/schema/beautifyrc.json"
-    }
-  ],
   "main": "./dist/extension",
   "activationEvents": [
     "onStartupFinished"
@@ -139,7 +131,13 @@
           "description": "%html.templating.desc%"
         }
       }
-    }
+    },
+    "jsonValidation": [
+      {
+        "fileMatch": ".jsbeautifyrc.json",
+        "url": "./schema/beautifyrc.json"
+      }
+    ]
   },
   "dependencies": {
     "@types/js-beautify": "^1.14.3",

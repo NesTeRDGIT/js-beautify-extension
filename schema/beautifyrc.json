@@ -5,6 +5,7 @@
   "properties": {
     "css": {
       "type": "object",
+      "description": "Property CSS document",
       "allOf":[
         {"$ref": "#/definitions/baseOption"},
         {"$ref": "#/definitions/cssOption"}
@@ -127,7 +128,7 @@
       "type": "object",
       "properties": {
         "brace_style": {
-          "description": "",
+          "description": "brace_style",
           "type": "string",
           "enum": [
             "collapse",
