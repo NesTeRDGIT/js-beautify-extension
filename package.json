@@ -1,5 +1,5 @@
 {
-  "name": "js-beautify-extension",
+  "name": "js-beautify-extentions",
   "displayName": "js-beautify for VSCode",
   "description": "js-beautify for VSCode",
   "version": "1.0.6",
@@ -158,9 +158,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/NesTeRDGIT/js-beautify-extentions"
+    "url": "https://github.com/NesTeRDGIT/js-beautify-extension"
   },
   "bugs": {
-    "url": "https://github.com/NesTeRDGIT/js-beautify-extentions/issues"
+    "url": "https://github.com/NesTeRDGIT/js-beautify-extension/issues"
   }
 }

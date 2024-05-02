@@ -11,4 +11,4 @@
 - Updated Readme file
 
 **Fixed bugs:**
-- After activating Angulat templating, the size of the indents increases [#3](https://github.com/NesTeRDGIT/js-beautify-extentions/issues/3) 
+- After activating Angulat templating, the size of the indents increases [#3](https://github.com/NesTeRDGIT/js-beautify-extension/issues/3) 

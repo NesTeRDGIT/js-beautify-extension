@@ -8,7 +8,7 @@ This extension uses either the VSCode settings for the js-beautify configuration
 
 ## Usage
 <p align="center">
-    <img src="https://github.com/NesTeRDGIT/js-beautify-extentions/blob/main/raw/DemoActivate.gif?raw=true" alt="DemoActivate"/>
+    <img src="https://github.com/NesTeRDGIT/js-beautify-extension/blob/main/raw/DemoActivate.gif?raw=true" alt="DemoActivate"/>
 </p>
 
 ## VSCode Settings
@@ -129,12 +129,12 @@ Matching VSCode settings to js-beautify settings<br />
         js: JSBeautifyOptions
     }
 HTMLBeautifyOptions/CSSBeautifyOptions/JSBeautifyOptions are [js-beautify](https://github.com/beautifier/js-beautify) settings<br />
-JSON Schema: [beautifyrc.json](https://github.com/NesTeRDGIT/js-beautify-extentions/blob/main/schema/beautifyrc.json)
+JSON Schema: [beautifyrc.json](https://github.com/NesTeRDGIT/js-beautify-extension/blob/main/schema/beautifyrc.json)
 
 ## Support for Angular control flow formatting
 Set parameters: <br />
 - js-beautify-for-vscode:html.templating = ['angular']<br />
 - html.format.indentHandlebars = true<br />
 <p align="center">
-    <img src="https://github.com/NesTeRDGIT/js-beautify-extentions/blob/main/raw/DemoActivateAngular.gif?raw=true" alt="DemoActivateAngular"/>
+    <img src="https://github.com/NesTeRDGIT/js-beautify-extension/blob/main/raw/DemoActivateAngular.gif?raw=true" alt="DemoActivateAngular"/>
 </p>
